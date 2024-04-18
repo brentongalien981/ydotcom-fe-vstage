@@ -1,0 +1,1 @@
+export const isCreatePostModalShown = (state) => state.createPost.isCreatePostModalShown;

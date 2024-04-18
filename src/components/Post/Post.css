@@ -1,0 +1,53 @@
+.aPost {
+  max-width: 620px;
+  min-width: 480px;
+  /* height: 500px; */
+  background-color: #FFF;
+  margin: auto;
+  margin-bottom: 50px;
+  padding: 30px 0;
+  padding-bottom: 50px;
+  border-radius: 10px;
+}
+
+.aPost .headerSection {
+  margin: 0 30px;
+}
+
+.aPost .profilePic {
+  width: 50px;
+  border: 1px solid #CCC;
+}
+
+.aPost .username {
+  display: inline;
+  margin-left: 3px;
+}
+
+.aPost .timestamp {
+  font-size: 90%;
+  /* font-weight: 200; */
+  font-style: italic;
+}
+
+.aPost a {
+  text-decoration: none;
+}
+
+.aPost .postMsgSection {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.aPost .videoSection {
+  z-index: -100;
+}
+
+.aPost .buttonSection {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.aPost .buttonSection button {
+  margin-right: 20px;
+}
