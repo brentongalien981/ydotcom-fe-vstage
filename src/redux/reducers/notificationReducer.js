@@ -9,6 +9,7 @@ const initialState = {
 const notificationReducer = (state = initialState, action) => {
   switch (action.type) {
     case notificationActionTypes.HANDLE_ON_POST_READY_NOTIFICATION_SUCCESS: return handleOnPostReadyNotificationSuccess(state, action);
+    case notificationActionTypes.QUERY_NUM_OF_UNREAD_NOTIFICATIONS_SUCCESS: return { ...state, numUnreadNotifications: action.payload };
     default: return state;
   }
 };

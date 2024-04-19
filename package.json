@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "fetch-mock": "^9.11.0",
     "redux-mock-store": "^1.5.4"
   }
 }

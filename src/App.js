@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { CreatePostModalProvider } from "./context/CreatePostModalContext";
 import MyRouteGuard from "./layouts/MyRouteGuard";
-import Notifications from "./components/Notifications/Notifications";
+import Notifications from "./containers/Notifications/Notifications";
 
 
 function App() {
