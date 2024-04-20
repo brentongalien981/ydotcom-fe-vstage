@@ -9,7 +9,8 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 
-describe('redux / actions / queryNumOfUnreadNotifications', () => {
+describe('redux / actions / notification / queryNumOfUnreadNotifications', () => {
+
 
   afterEach(() => {
     fetchMock.restore();
@@ -39,4 +40,6 @@ describe('redux / actions / queryNumOfUnreadNotifications', () => {
 
     expect(fakeStore.getActions()).toEqual(expectedActions);
   });
+
+  
 });
