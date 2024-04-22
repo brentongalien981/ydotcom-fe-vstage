@@ -10,22 +10,22 @@ const initialState = {
 
 const notificationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case notificationActionTypes.HANDLE_ON_POST_READY_NOTIFICATION_SUCCESS: return handleOnPostReadyNotificationSuccess(state, action);
+    case notificationActionTypes.HANDLE_ON_POST_READY_NOTIFICATION_SUCCESS: return onHandleOnPostReadyNotificationSuccess(state, action);
     case notificationActionTypes.QUERY_NUM_OF_UNREAD_NOTIFICATIONS_SUCCESS: return { ...state, numUnreadNotifications: action.payload };
     case notificationActionTypes.READ_NOTIFICATIONS_REQUEST: return { ...state, isReading: true, error: null };
-    case notificationActionTypes.READ_NOTIFICATIONS_SUCCESS: return readNotificationsSuccess(state, action);
+    case notificationActionTypes.READ_NOTIFICATIONS_SUCCESS: return onReadNotificationsSuccess(state, action);
     case notificationActionTypes.READ_NOTIFICATIONS_FAILURE: return { ...state, isReading: false, error: action.error };
     default: return state;
   }
 };
 
 
-function readNotificationsSuccess(state, action) {
+function onReadNotificationsSuccess(state, action) {
 
   // Loop through the fetched notifications and update 
   // the numUnreadNotifications.
-  const fetchedNotifications = action.payload;
-  let updatedNumUnreadNotifications = state.numUnreadNotifications;
+  const fetchedNotifications = action.payload ?? [];
+  let updatedNumUnreadNotifications = 0;
 
   fetchedNotifications.forEach(n => {
     if (parseInt(n.isRead) === 0) {
@@ -42,7 +42,7 @@ function readNotificationsSuccess(state, action) {
 }
 
 
-function handleOnPostReadyNotificationSuccess(state, action) {
+function onHandleOnPostReadyNotificationSuccess(state, action) {
 
   // Filter out repeated notifications.
   const oldNotifications = state.notifications;
