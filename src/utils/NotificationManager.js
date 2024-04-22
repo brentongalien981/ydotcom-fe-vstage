@@ -39,7 +39,7 @@ const NotificationManager = () => {
     if (isLoggedIn) {
       joinRoom(token);
       listenToOnPostReadyNotification(dispatch);
-      dispatch(queryNumOfUnreadNotifications(token));
+      dispatch(queryNumOfUnreadNotifications());
     }
   }, [dispatch, isLoggedIn, token]);
 

@@ -4,7 +4,8 @@ import notificationReducer from "../../../redux/reducers/notificationReducer";
 
 const defaultInitialState = {
   notifications: [],
-  numUnreadNotifications: 0
+  numUnreadNotifications: 0,
+  isReading: false
 };
 
 
@@ -44,7 +45,7 @@ describe("redux / reducers / notificationReducer", () => {
     // Mock stuffs.
     const fakeInitialState = { ...defaultInitialState };
     const fakeQueriedNumUnreadNotifications = 5;
-    
+
     // Action to dispatch.
     const fakeAction = {
       type: notificationActionTypes.QUERY_NUM_OF_UNREAD_NOTIFICATIONS_SUCCESS,
@@ -60,6 +61,40 @@ describe("redux / reducers / notificationReducer", () => {
     const expectedNewState = {
       ...defaultInitialState,
       numUnreadNotifications: fakeQueriedNumUnreadNotifications
+    };
+
+    expect(newState).toEqual(expectedNewState);
+
+  });
+
+
+  it("should handle READ_NOTIFICATIONS_SUCCESS", () => {
+
+    // Mock stuffs.
+    const fakeInitialState = { ...defaultInitialState };
+    const fakeNewNotifications = [
+      { id: "fake-notification-id-1", message: "Fake notification message 1.", isRead: 0 },
+      { id: "fake-notification-id-2", message: "Fake notification message 2.", isRead: 1 },
+      { id: "fake-notification-id-3", message: "Fake notification message 3.", isRead: 0 }
+    ];
+
+    // Action to dispatch.
+    const fakeAction = {
+      type: notificationActionTypes.READ_NOTIFICATIONS_SUCCESS,
+      payload: fakeNewNotifications
+    };
+
+
+    // Trigger reducer.
+    const newState = notificationReducer(fakeInitialState, fakeAction);
+
+
+    // Expected new state.
+    const expectedNewState = {
+      ...fakeInitialState,
+      notifications: fakeNewNotifications,
+      numUnreadNotifications: 2,
+      isReading: false
     };
 
     expect(newState).toEqual(expectedNewState);

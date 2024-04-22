@@ -2,7 +2,9 @@ import * as notificationActionTypes from "../actionTypes/notificationActionTypes
 
 const initialState = {
   notifications: [],
-  numUnreadNotifications: 0
+  numUnreadNotifications: 0,
+  isReading: false,
+  error: null
 };
 
 
@@ -10,9 +12,34 @@ const notificationReducer = (state = initialState, action) => {
   switch (action.type) {
     case notificationActionTypes.HANDLE_ON_POST_READY_NOTIFICATION_SUCCESS: return handleOnPostReadyNotificationSuccess(state, action);
     case notificationActionTypes.QUERY_NUM_OF_UNREAD_NOTIFICATIONS_SUCCESS: return { ...state, numUnreadNotifications: action.payload };
+    case notificationActionTypes.READ_NOTIFICATIONS_REQUEST: return { ...state, isReading: true, error: null };
+    case notificationActionTypes.READ_NOTIFICATIONS_SUCCESS: return readNotificationsSuccess(state, action);
+    case notificationActionTypes.READ_NOTIFICATIONS_FAILURE: return { ...state, isReading: false, error: action.error };
     default: return state;
   }
 };
+
+
+function readNotificationsSuccess(state, action) {
+
+  // Loop through the fetched notifications and update 
+  // the numUnreadNotifications.
+  const fetchedNotifications = action.payload;
+  let updatedNumUnreadNotifications = state.numUnreadNotifications;
+
+  fetchedNotifications.forEach(n => {
+    if (parseInt(n.isRead) === 0) {
+      updatedNumUnreadNotifications++;
+    }
+  });
+
+  return {
+    ...state,
+    notifications: fetchedNotifications,
+    numUnreadNotifications: updatedNumUnreadNotifications,
+    isReading: false
+  };
+}
 
 
 function handleOnPostReadyNotificationSuccess(state, action) {

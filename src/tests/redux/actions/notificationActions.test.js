@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import { thunk } from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import { queryNumOfUnreadNotifications } from '../../../redux/actions/notificationActions';
+import { queryNumOfUnreadNotifications, readNotifications } from '../../../redux/actions/notificationActions';
 import * as notificationActionTypes from '../../../redux/actionTypes/notificationActionTypes';
 
 
@@ -20,7 +20,6 @@ describe('redux / actions / notification / queryNumOfUnreadNotifications', () =>
   it('dispatches QUERY_NUM_OF_UNREAD_NOTIFICATIONS_SUCCESS when fetching has succeeded', async () => {
 
     // Mock stuffs.
-    const fakeToken = 'fake-token';
     const fakeNumUnreadNotifications = 5;
     const fakeStore = mockStore({});
     const fakeRequestUrl = `${process.env.REACT_APP_BACKEND_URL}/notifications/queryNumOfUnreadNotifications`;
@@ -30,7 +29,7 @@ describe('redux / actions / notification / queryNumOfUnreadNotifications', () =>
 
 
     // Trigger action.
-    await fakeStore.dispatch(queryNumOfUnreadNotifications(fakeToken));
+    await fakeStore.dispatch(queryNumOfUnreadNotifications());
 
 
     // Expect
@@ -41,5 +40,71 @@ describe('redux / actions / notification / queryNumOfUnreadNotifications', () =>
     expect(fakeStore.getActions()).toEqual(expectedActions);
   });
 
-  
+
+  it("dispatches actions READ_NOTIFICATIONS_REQUEST and READ_NOTIFICATIONS_SUCCESS when reading notifications", async () => {
+
+    // Mock stuffs.    
+    const requestUrl = process.env.REACT_APP_BACKEND_URL + "/notifications";
+    const fakeStore = mockStore({});
+    const mockResponse = {
+      notifications: [
+        { id: 1, message: "mock-notification-message-1" },
+        { id: 2, message: "mock-notification-message-2" }
+      ]
+    };
+
+    fetchMock.getOnce(requestUrl, {
+      status: 200,
+      body: mockResponse
+    });
+
+
+    // Trigger action.    
+    await fakeStore.dispatch(readNotifications());
+
+
+    // Expect    
+    const expectedActions = [
+      { type: notificationActionTypes.READ_NOTIFICATIONS_REQUEST },
+      { type: notificationActionTypes.READ_NOTIFICATIONS_SUCCESS, payload: mockResponse.notifications }
+    ];
+
+    expect(fakeStore.getActions()).toEqual(expectedActions);
+
+  });
+
+
+});
+
+
+it("dispatches READ_NOTIFICATIONS_FAILURE when reading of notifications fails", async () => {
+
+  // Mock stuffs.
+  const errorMsg = "Error reading notifications";
+  const requestUrl = process.env.REACT_APP_BACKEND_URL + "/notifications";
+  const fakeStore = mockStore({});
+  const mockResponse = {
+    status: 500,
+    body: {
+      error: {
+        friendlyErrorMessage: errorMsg
+      }
+    }
+  };
+
+  fetchMock.getOnce(requestUrl, mockResponse);
+
+
+  // Trigger action.
+  await fakeStore.dispatch(readNotifications());
+
+
+  // Expect
+  const expectedActions = [
+    { type: notificationActionTypes.READ_NOTIFICATIONS_REQUEST },
+    { type: notificationActionTypes.READ_NOTIFICATIONS_FAILURE, error: errorMsg }
+  ];
+
+  expect(fakeStore.getActions()).toEqual(expectedActions);
+
 });

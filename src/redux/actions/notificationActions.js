@@ -1,4 +1,5 @@
 import My from "../../utils/My";
+import { myFetch } from "../../utils/myRequestUtils";
 import * as notificationActionTypes from "../actionTypes/notificationActionTypes";
 
 
@@ -17,32 +18,44 @@ export const handleOnPostReadyNotification = (data) => (dispatch) => {
 };
 
 
-export const queryNumOfUnreadNotifications = (token) => async (dispatch) => {
-  try {
-    const url = process.env.REACT_APP_BACKEND_URL + "/notifications/queryNumOfUnreadNotifications";
+export const queryNumOfUnreadNotifications = () => async (dispatch) => {
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
-      }
-    });
-
-
-    if (response.status === 200 || response.status === 201) {
-
-      const data = await response.json();
-
+  await myFetch({
+    url: "/notifications/queryNumOfUnreadNotifications",
+    method: "POST",
+    onSuccess: (data) => {
       dispatch({
         type: notificationActionTypes.QUERY_NUM_OF_UNREAD_NOTIFICATIONS_SUCCESS,
         payload: data.numUnreadNotifications
       });
-    } else {
-      throw new Error();
     }
+  });
 
-  } catch (e) {
-    My.log("Oops, error in method queryNumOfUnreadNotifications()...");
-  }
+
+};
+
+
+export const readNotifications = () => async (dispatch) => {
+
+  dispatch({
+    type: notificationActionTypes.READ_NOTIFICATIONS_REQUEST
+  });
+
+
+  await myFetch({
+    url: "/notifications",
+    onSuccess: (data) => {
+      dispatch({
+        type: notificationActionTypes.READ_NOTIFICATIONS_SUCCESS,
+        payload: data.notifications
+      });
+    },
+    onFailure: (errorMessage) => {
+      dispatch({
+        type: notificationActionTypes.READ_NOTIFICATIONS_FAILURE,
+        error: errorMessage
+      });
+    }
+  });
+
 };
