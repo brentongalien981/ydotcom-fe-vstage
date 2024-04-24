@@ -5,6 +5,7 @@ import "animate.css";
 import { useDispatch } from "react-redux";
 import { readNotifications } from "../../redux/actions/notificationActions";
 import { Spinner } from "react-bootstrap";
+import Notification from "../../components/Notification/Notification";
 
 
 const Notifications = () => {
@@ -43,7 +44,7 @@ const Notifications = () => {
   if (notifications.length > 0) {
     notificationsComponent = (
       <div>
-        {notifications.map((n) => <p key={n.id} className="animate__animated animate__fadeIn">{n.message}</p>)}
+        {notifications.map((n) => <Notification key={n.id} notification={n} />)}
       </div>
     );
   }

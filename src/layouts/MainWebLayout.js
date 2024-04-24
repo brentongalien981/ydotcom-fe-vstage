@@ -19,7 +19,7 @@ function MainWebLayout() {
           <MainNavigation />
         </Col>
 
-        <Col xs={{ span: 6, offset: 3 }} style={{ backgroundColor: "#DDD" }}>
+        <Col xs={{ span: 6, offset: 3 }} style={{ backgroundColor: "#EEE" }}>
           <Outlet />
         </Col>
 
