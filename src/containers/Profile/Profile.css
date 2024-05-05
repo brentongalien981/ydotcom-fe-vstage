@@ -1,0 +1,13 @@
+.profile-container {
+  text-align: center;
+}
+
+.profile-container div {
+  margin: 10px;
+  background-color: #FFF;
+}
+
+.profile-container .profile-photo {
+  width: 100px;
+  border: 1px solid #DDD;
+}

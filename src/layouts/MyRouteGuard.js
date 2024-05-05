@@ -38,6 +38,7 @@ const MyRouteGuard = ({ children }) => {
           case "/":
           case "/login":
           case "/signup":
+          case "/profile":
             My.log(`Guest user is allowed to pathname: ${pathname}`);
             break;
           // All the rest of routes, guest user is not allowed.

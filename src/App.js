@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from './layouts/MainLayout';
 import PlainLayout from "./layouts/PlainLayout";
-import Profile from "./containers/Profile";
+import Profile from "./containers/Profile/Profile";
 import Home from "./containers/Home";
 import Signup from "./containers/Signup/Signup";
 import NotFound from "./containers/NotFound";
