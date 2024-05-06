@@ -36,7 +36,7 @@ function App() {
                   </Route>
 
                   <Route path="/" element={<MainLayout />}>
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/profile/:username" element={<Profile />} />
                     <Route path="/notifications" element={<Notifications />} />
                     <Route index element={<Home />} />
                   </Route>

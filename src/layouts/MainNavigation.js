@@ -48,7 +48,7 @@ function MainNavigation() {
     if (isLoggedIn) {
       return (
         <>
-          <li><Link to="/profile"><ion-icon name="person"></ion-icon> Profile</Link></li>
+          <li><Link to={`/profile/${username}`}><ion-icon name="person"></ion-icon> Profile</Link></li>
           <li>
             <Link to="/notifications">
               <ion-icon name="notifications"></ion-icon> Notifications <Badge bg="danger">{numUnreadNotifications}</Badge>

@@ -1,0 +1,21 @@
+.profile-bio {
+  padding: 20px;
+}
+
+.profile-bio table {
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.profile-bio table td {
+  /* background-color: pink; */
+}
+
+.profile-bio table td:first-child {
+  text-align: right;
+  font-weight: 700;
+}
+
+.profile-bio table td:last-child {
+  text-align: left;
+}
