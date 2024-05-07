@@ -48,7 +48,7 @@ const Profile = () => {
   // Set profile component.
   let profileComponent = null;
 
-  if (!isReadingProfile) {
+  if (!isReadingProfile && !readError) {
 
     const profilePhotoSrc = `/photos/${profile.photo}`;
 

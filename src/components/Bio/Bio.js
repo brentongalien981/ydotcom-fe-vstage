@@ -15,8 +15,8 @@ const Bio = () => {
         <tbody>
 
           <tr>
-            <td>job title:</td>
-            <td>{profile.jobTitle}</td>
+            <td>profession:</td>
+            <td>{profile.profession}</td>
           </tr>
 
           <tr>
