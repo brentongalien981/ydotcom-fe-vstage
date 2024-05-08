@@ -10,6 +10,7 @@ import "animate.css";
 const Post = (props) => {
 
   const postOwnerUsername = props.post.user.username;
+  const userProfilePic = props.post.userProfile.photoSource ? `/photos/${props.post.userProfile.photoSource}` : "/photos/penguin3.png";
   const userProfileLink = `/profile/${postOwnerUsername}`;
   const timestamp = MyDatePrettifier.timePassed(props.post.createdAt, new Date());
 
@@ -21,7 +22,7 @@ const Post = (props) => {
 
         <div className="d-flex justify-content-between">
           <div>
-            <Image className="profilePic" src="photos/penguin3.png" roundedCircle />
+            <Image className="profilePic" src={userProfilePic} roundedCircle />
             <h6 className="username"><Link to={userProfileLink}>@{postOwnerUsername}</Link></h6>
           </div>
           <h6 className="timestamp">{timestamp}</h6>
