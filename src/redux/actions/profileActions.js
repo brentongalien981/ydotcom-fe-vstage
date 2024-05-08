@@ -10,7 +10,7 @@ export const readProfile = (username) => async (dispatch) => {
 
 
   await myFetch({
-    url: `/profile/${username}`,
+    url: `/profiles/${username}`,
     onSuccess: (data) => {
       dispatch({
         type: profileActionTypes.READ_USER_PROFILE_SUCCESS,

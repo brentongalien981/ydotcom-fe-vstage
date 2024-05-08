@@ -50,7 +50,7 @@ const Profile = () => {
 
   if (!isReadingProfile && !readError) {
 
-    const profilePhotoSrc = `/photos/${profile.photo}`;
+    const profilePhotoSrc = profile.photoSource ? `/photos/${profile.photoSource}` : `/photos/penguin2.jpg`;
 
     profileComponent = (
       <div className="profile-container">

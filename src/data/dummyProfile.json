@@ -1,8 +1,8 @@
 {
   "username": "jkavanaugh_721",
-  "photo": "penguin.jpg",
-  "profession": "MMA Coach",
   "email": "johnk721@gmail.com",
+  "photoSource": "penguin.jpg",
+  "profession": "MMA Coach",
   "country": "Canada",
   "hobby": "Hockey"
 }
