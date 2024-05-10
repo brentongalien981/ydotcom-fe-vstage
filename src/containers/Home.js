@@ -50,7 +50,6 @@ function Home() {
 
   return (
     <div>
-      <h3>Home</h3>
       {postComponents}
       {showMorePostsSection}
     </div>

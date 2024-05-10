@@ -48,8 +48,8 @@ const Post = (props) => {
 
 
       <div className="buttonSection">
-        <Button><ion-icon name="chatbubble"></ion-icon> Comment</Button>
-        <Button><ion-icon name="thumbs-up"></ion-icon> Like</Button>
+        <Button><ion-icon id="aPost-icons" name="chatbubble"></ion-icon> Comment</Button>
+        <Button><ion-icon id="aPost-icons" name="thumbs-up"></ion-icon> Like</Button>
       </div>
 
     </div>

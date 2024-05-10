@@ -1,0 +1,13 @@
+.user-list-item {
+  margin-bottom: 10px;
+}
+
+.user-list .profile-image {
+  width: 50px;
+  border: 1px solid #CCC;
+}
+
+.profile-link {
+  text-decoration: none;
+  margin: 0 5px;
+}

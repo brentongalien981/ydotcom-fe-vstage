@@ -1,6 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import Header from "./Header";
+import Header from "../Header";
+import "./PlainLayout.css";
 
 
 
@@ -12,10 +13,8 @@ function PlainLayout() {
 
       {<Header />}
 
-      <Row>
-
-        {/* <Col style={{ backgroundColor: "#e6ffe6" }}>      */}
-        <Col>
+      <Row className="m-0">
+        <Col id="the-main-col">
           <Outlet />
         </Col>
 

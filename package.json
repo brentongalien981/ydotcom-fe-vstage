@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@bbdevcomVideo/bbdevcomVideo-player-react": "^2.3.3",
     "@bbdevcomVideo/bbdevcomVideoChunk": "^3.3.2",
     "@testing-library/jest-dom": "^5.17.0",

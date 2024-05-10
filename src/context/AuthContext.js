@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [token, setToken] = useState(null);
+  const [profilePhotoSource, setProfilePhotoSource] = useState(null);
 
 
   useEffect(() => {
@@ -20,18 +21,20 @@ export const AuthProvider = ({ children }) => {
       setIsLoggedIn(storedAuth.isLoggedIn);
       setUsername(storedAuth.username);
       setToken(storedAuth.token);
+      setProfilePhotoSource(storedAuth.profilePhotoSource);
     }
 
   }, []);
 
 
-  const login = (username, token) => {
+  const login = (username, token, profilePhotoSource) => {
     setUsername(username);
     setToken(token);
     setIsLoggedIn(true);
+    setProfilePhotoSource(profilePhotoSource);
 
     // Store auth credentials in localStorage.
-    MyJsonLocalStorage.set("auth", { username, isLoggedIn: true, token });
+    MyJsonLocalStorage.set("auth", { username, isLoggedIn: true, token, profilePhotoSource });
   };
 
 
@@ -39,6 +42,7 @@ export const AuthProvider = ({ children }) => {
     setUsername("");
     setToken(null);
     setIsLoggedIn(false);
+    setProfilePhotoSource(null);
 
     // Reset auth credentials in localStorage.
     MyJsonLocalStorage.set("auth", null);
@@ -46,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, username, token, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, username, token, profilePhotoSource, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

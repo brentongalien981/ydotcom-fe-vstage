@@ -1,17 +1,38 @@
-import { Button, Col, Form, Image, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Dropdown, Form, Image, InputGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 
 function Header() {
+
+  const { isLoggedIn, profilePhotoSource } = useAuth();
+  const usedProfilePhotoSource = profilePhotoSource ? `/photos/${profilePhotoSource}` : `/photos/penguin.jpg`;
+
+
+  let profilePicDropdown = null;
+  if (isLoggedIn) {
+    profilePicDropdown = (
+      <Dropdown>
+        <Dropdown.Toggle variant="outline-secondary" id="profile-pic-btn">
+          <Image className="profile-pic" src={usedProfilePhotoSource} roundedCircle />
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item>
+            <Link to="/logout" className="navbar-links"><ion-icon name="log-out" id="navbar-icons"></ion-icon> Logout</Link>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  }
+
+
   return (
 
-    <Row
-      className="d-flex justify-content-between align-content-center flex-wrap"
-      style={{ backgroundColor: "black", width: "100%", top: "0", left: "0", height: "80px", position: "fixed", margin: "0", zIndex: "100" }}
-    >
+    <Row id="header-bar" className="d-flex justify-content-between align-content-center flex-wrap">
 
       <Col>
-        <h3><Link to="/">YdotCom</Link></h3>
+        <Link to="/" className="logo-link">YdotCom</Link>
       </Col>
 
       <Col style={{ textAlign: "center" }}>
@@ -22,7 +43,7 @@ function Header() {
       </Col>
 
       <Col style={{ textAlign: "right" }} >
-        <Image style={{ height: "50px" }} src="logo192.png" rounded />
+        {profilePicDropdown}
       </Col>
 
     </Row>

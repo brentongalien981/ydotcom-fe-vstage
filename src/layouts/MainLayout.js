@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import My from "../utils/My";
 import MainPhoneLayout from "./MainPhoneLayout";
-import MainWebLayout from "./MainWebLayout";
+import MainWebLayout from "./MainWebLayout/MainWebLayout";
 import NotificationManager from "../utils/NotificationManager";
 
 

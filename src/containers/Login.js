@@ -58,7 +58,7 @@ const Login = () => {
         setIsLoggingIn(false);
 
         // Login on successful signup. Use context and localstorage.        
-        login(data.username, data.token);
+        login(data.username, data.token, data.profilePhotoSource);
 
         // Set Redirection Notification attribs for successful signup when redirected to homepage.
         const alertNotification = {

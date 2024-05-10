@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { Button, Badge } from "react-bootstrap";
-import { useCreatePostModal } from "../context/CreatePostModalContext";
+import { useCreatePostModal } from "../../context/CreatePostModalContext";
 import { useSelector } from "react-redux";
-import { selectorNumUnreadNotifications } from "../redux/selectors/notificationSelectors";
+import { selectorNumUnreadNotifications } from "../../redux/selectors/notificationSelectors";
+import "./MainNavigation.css";
 
 
 
@@ -22,8 +23,8 @@ function MainNavigation() {
 
     return (
       <>
-        <li><Link to="/signup"><ion-icon name="person-add"></ion-icon> Signup</Link></li>
-        <li><Link to="/login"><ion-icon name="log-in"></ion-icon> Login</Link></li>
+        <li><Link to="/signup"><ion-icon name="person-add" id="navbar-icons"></ion-icon> Signup</Link></li>
+        <li><Link to="/login"><ion-icon name="log-in" id="navbar-icons"></ion-icon> Login</Link></li>
       </>
     );
   };
@@ -34,7 +35,7 @@ function MainNavigation() {
     if (isLoggedIn) {
       return (
         <div>
-          <h3>{`Hi ${username}!`}</h3>
+          <h5>{`What's up ${username}?!`}</h5>
         </div>
       );
     }
@@ -48,13 +49,12 @@ function MainNavigation() {
     if (isLoggedIn) {
       return (
         <>
-          <li><Link to={`/profile/${username}`}><ion-icon name="person"></ion-icon> Profile</Link></li>
+          <li><Link to={`/profile/${username}`}><ion-icon id="navbar-icons" name="person"></ion-icon> Profile</Link></li>
           <li>
             <Link to="/notifications">
-              <ion-icon name="notifications"></ion-icon> Notifications <Badge bg="danger">{numUnreadNotifications}</Badge>
+              <ion-icon id="navbar-icons" name="notifications"></ion-icon> Notifications <Badge bg="danger">{numUnreadNotifications}</Badge>
             </Link>
           </li>
-          <li><Link to="/logout"><ion-icon name="log-out"></ion-icon> Logout</Link></li>
         </>
       );
     }
@@ -64,27 +64,19 @@ function MainNavigation() {
 
 
   return (
-    <>
+    <div id="main-nav-container">
       {getUserGreetingComp()}
-      <nav style={myStyle.nav}>
+      <nav className="main-nav-section">
         <ul>
-          <li><Link to="/"><ion-icon name="home"></ion-icon> Home</Link></li>
+          <li><Link to="/"><ion-icon name="home" id="navbar-icons"></ion-icon> Home</Link></li>
           {getLogInAndSignupLinks()}
           {getLoggedInUserLinks()}
-          <li><Button onClick={showCreatePostModal}><ion-icon name="pencil"></ion-icon> Create Post</Button></li>
+          <li><Button onClick={showCreatePostModal}><ion-icon name="pencil" id="navbar-icons"></ion-icon> Create Post</Button></li>
         </ul>
       </nav>
-    </>
+    </div>
   );
 }
-
-
-const myStyle = {
-  nav: {
-    border: "3px solid black",
-    borderRadius: "10px"
-  }
-};
 
 
 export default MainNavigation;

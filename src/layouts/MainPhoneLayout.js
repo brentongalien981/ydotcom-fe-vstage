@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Col, Image, Offcanvas, Row } from "react-bootstrap";
 import { List } from "react-bootstrap-icons";
 import { Link, Outlet } from "react-router-dom";
-import MainNavigation from "./MainNavigation";
+import MainNavigation from "./MainNavigation/MainNavigation";
 import AlertNotifications from "./AlertNotifications";
 import CreatePost from "../components/CreatePost";
 
