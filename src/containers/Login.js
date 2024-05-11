@@ -1,4 +1,4 @@
-import { Button, Form, Image } from "react-bootstrap";
+import { Button, Col, Form, Image, Row } from "react-bootstrap";
 import "./Signup/Signup.css";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
@@ -117,16 +117,16 @@ const Login = () => {
 
 
   return (
-    <>
+    <Row id="auth">
       {alertNotification}
 
-      <div id="auth" className="d-flex justify-content-center">
+      <Col id="auth-content" className="d-flex justify-content-center" sm={{ span: 8, offset: 2 }}>
 
-        <div id="imgContainer" className="w-50">
+        <div id="imgContainer">
           <Image id="theImg" src="photos/nature3.jpg" />
         </div>
 
-        <Form id="theForm" className="w-50">
+        <Form id="theForm">
           <h3>Login</h3><br />
 
           {formInputs}
@@ -135,8 +135,8 @@ const Login = () => {
           <Button disabled={isLoggingIn} onClick={onLogin}>Submit</Button>
         </Form>
 
-      </div>
-    </>
+      </Col>
+    </Row>
   );
 
 };

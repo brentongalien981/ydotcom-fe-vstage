@@ -1,8 +1,9 @@
 #the-right-section {
-  width: 100%;
+  /* width: fit-content; */
+  /* margin: auto; */
   height: 600px;
-  background-color: rgb(255, 255, 255);
   padding: 30px;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0px 0px 20px rgb(210, 210, 210);
 }

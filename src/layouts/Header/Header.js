@@ -1,6 +1,7 @@
 import { Button, Col, Dropdown, Form, Image, InputGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
+import "./Header.css";
 
 
 function Header() {
@@ -35,7 +36,7 @@ function Header() {
         <Link to="/" className="logo-link">YdotCom</Link>
       </Col>
 
-      <Col style={{ textAlign: "center" }}>
+      <Col xs="4" style={{ textAlign: "center" }}>
         <InputGroup>
           <Form.Control placeholder="Search anything..." />
           <Button variant="outline-secondary">Search</Button>

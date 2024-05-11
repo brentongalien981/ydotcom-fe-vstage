@@ -1,5 +1,5 @@
 import { Col, Row } from "react-bootstrap";
-import Header from "../Header";
+import Header from "../Header/Header";
 import MainNavigation from "../MainNavigation/MainNavigation";
 import { Outlet } from "react-router-dom";
 import AlertNotifications from "../AlertNotifications";

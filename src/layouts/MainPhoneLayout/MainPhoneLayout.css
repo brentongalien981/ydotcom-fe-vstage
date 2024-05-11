@@ -1,0 +1,9 @@
+#main-phone-layout {
+  margin-top: 100px;
+  background-color: rgb(250, 250, 250);
+}
+
+#phone-main-row {
+  width: 100%;
+  margin: 0;
+}

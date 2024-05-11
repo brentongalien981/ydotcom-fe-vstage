@@ -13,10 +13,10 @@ const UserList = ({ data }) => {
     const displayedUsername = `@${user.username.substring(0, 12)}`;
 
     return (
-      <div className="user-list-item" key={user.username}>
+      <div className="user-list-item d-flex align-items-center" key={user.username}>
         <Image className="profile-image" src={profilePhotoSource} roundedCircle />
         <Link to={profileLink} className="profile-link">{displayedUsername}</Link>
-        <Button size="sm">Follow</Button>
+        <Button size="sm" className="ms-auto">Follow</Button>
       </div>
     );
   });

@@ -1,4 +1,4 @@
-import { Button, Form, Image } from "react-bootstrap";
+import { Button, Col, Form, Image, Row } from "react-bootstrap";
 import "./Signup.css";
 import React, { useState } from "react";
 import My from "../../utils/My";
@@ -125,16 +125,16 @@ function Signup() {
 
 
   return (
-    <>
+    <Row id="auth">
       {alertNotification}
 
-      <div id="auth" className="d-flex justify-content-center">
+      <Col id="auth-content" className="d-flex justify-content-center" sm={{ span: 8, offset: 2 }}>
 
-        <div id="imgContainer" className="w-50">
+        <div id="imgContainer">
           <Image id="theImg" src="photos/nature3.jpg" />
         </div>
 
-        <Form id="theForm" className="w-50">
+        <Form id="theForm">
           <h3>Signup</h3><br />
 
           {formInputs}
@@ -142,9 +142,9 @@ function Signup() {
           <br />
           <Button disabled={isSigningUp} onClick={onSignup}>Submit</Button>
         </Form>
-
-      </div>
-    </>
+        
+      </Col>
+    </Row>
   );
 }
 
