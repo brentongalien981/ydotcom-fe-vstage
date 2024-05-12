@@ -13,7 +13,7 @@ function MainWebLayout() {
   return (
     <div className="main-web-layout">
 
-      {<Header />}
+      <Header />
 
       <Row className="main-row">
 

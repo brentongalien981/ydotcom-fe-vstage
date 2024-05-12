@@ -7,10 +7,11 @@ import NotificationManager from "../utils/NotificationManager";
 
 function MainLayout() {
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1080);
+  const largeWidthBreakpoint = 1200;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < largeWidthBreakpoint);
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth < 1200);
+    setIsMobile(window.innerWidth < largeWidthBreakpoint);
     My.log(window.innerWidth);
   };
 
