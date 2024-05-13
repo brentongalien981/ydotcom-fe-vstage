@@ -3,7 +3,6 @@ import "./Profile.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import My from "../../utils/My";
 import { selectorIsReadingProfile, selectorProfile, selectorReadProfileError } from "../../redux/selectors/profileSelectors";
 import "animate.css";
 import { readProfile } from "../../redux/actions/profileActions";
@@ -20,8 +19,6 @@ const Profile = () => {
 
 
   useEffect(() => {
-    // TODO: Read user's bio.
-    My.log(`username ==> ${username}`);
     dispatch(readProfile(username));
 
   }, [dispatch, username]);
@@ -53,20 +50,20 @@ const Profile = () => {
     const profilePhotoSrc = profile.photoSource ? `/photos/${profile.photoSource}` : `/photos/penguin2.jpg`;
 
     profileComponent = (
-      <div className="profile-container">
+      <>
 
         {/* Profile Photo */}
-        <div>
+        <div className="profile-sections">
           <Image src={profilePhotoSrc} roundedCircle className="profile-photo" />
         </div>
 
         {/* Username */}
-        <div>@{profile.username}</div>
+        <div className="profile-sections">@{profile.username}</div>
 
         {/* Profile Tabs */}
         <Tabs
           defaultActiveKey="bio"
-          className="mb-3"
+          className="mb-3 profile-sections"
           fill
         >
           <Tab eventKey="bio" title="Bio"><Bio /></Tab>
@@ -75,15 +72,15 @@ const Profile = () => {
           <Tab eventKey="following" title="Following">Tab content for Following</Tab>
         </Tabs>
 
-      </div>
+      </>
     );
   }
 
 
 
   return (
-    <div>
-      <h3>Profile</h3>
+    <div className="profile-container">
+      <h4 className="page-title">Profile</h4>
       {loaderComponent}
       {errorComponent}
       {profileComponent}
