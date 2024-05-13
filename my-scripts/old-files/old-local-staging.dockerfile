@@ -14,13 +14,21 @@ RUN npm install
 COPY . .
 
 # Copy env file from the local folder to the Docker build context
-COPY staging.env .env
+# Make sure to have this env file for local-staging. Include it in .gitignore
+# but not in .dockerignore.
+COPY ./DELETE-ME/local-staging.env .env
 
 # Build the React app
 RUN npm run build
 
-# Expose port 3000 to the outside world
-EXPOSE 3000
+# Use nginx:alpine version 1.21.6 as the web server for serving the React app
+FROM nginx:1.21.6-alpine
 
-# Run the React app
-CMD ["npm", "start"]
+# Copy the built React app from the previous stage to the nginx HTML directory
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose port 
+EXPOSE 80
+
+# Command to run nginx
+CMD ["nginx", "-g", "daemon off;"]

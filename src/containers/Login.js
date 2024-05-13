@@ -2,7 +2,9 @@ import { Button, Col, Form, Image, Row } from "react-bootstrap";
 import "./Signup/Signup.css";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+
+import { useHistory } from 'react-router-dom';
+
 import AlertNotification from "../components/AlertNotification";
 import { useAlertNotifications } from "../context/AlertNotificationsContext";
 
@@ -10,7 +12,7 @@ import { useAlertNotifications } from "../context/AlertNotificationsContext";
 const Login = () => {
 
   const { login } = useAuth();
-  const navigate = useNavigate();
+  const history = useHistory();
   const { addAlertNotification } = useAlertNotifications();
 
 
@@ -68,7 +70,7 @@ const Login = () => {
 
         addAlertNotification(alertNotification.heading, alertNotification.message);
 
-        navigate("/");
+        history.push("/");
 
       } else if (response.status === 400 || response.status === 401 || response.status === 403 || response.status === 404 || response.status === 422 || response.status === 500) {
 

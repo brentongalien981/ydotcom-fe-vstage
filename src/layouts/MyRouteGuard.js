@@ -1,23 +1,28 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useLocation, useHistory } from "react-router-dom";
+// import { useAuth } from "../context/AuthContext";
 import My from "../utils/My";
+import MyJsonLocalStorage from "../utils/MyJsonLocalStorage";
 
 
 const MyRouteGuard = ({ children }) => {
 
   const location = useLocation();
-
   const { pathname } = location;
-  const { isLoggedIn } = useAuth();
-  const navigate = useNavigate();
+  // const { isLoggedIn } = useAuth();
+
+  const history = useHistory();
 
 
   useEffect(() => {
 
     const handleRouteAccess = () => {
 
-      if (isLoggedIn) {
+
+      const storedAuth = MyJsonLocalStorage.get("auth");
+
+      if (storedAuth?.isLoggedIn) {
+
         switch (pathname) {
           // Not allowed routes for logged-in user.
           case "/login":
@@ -25,7 +30,7 @@ const MyRouteGuard = ({ children }) => {
             // Redirect
             My.log(`Logged-in user not allowed to pathname: ${pathname}`);
             My.log("Redirecting to /");
-            navigate("/");
+            history.push("/");
             break;
           default:
             // Everywhere else is allowed.
@@ -34,18 +39,15 @@ const MyRouteGuard = ({ children }) => {
         }
       } else {
         switch (pathname) {
-          // Allowed routes for guest user.
-          case "/":
-          case "/login":
-          case "/signup":
-          case "/profile":
-            My.log(`Guest user is allowed to pathname: ${pathname}`);
-            break;
-          // All the rest of routes, guest user is not allowed.
-          default:
+          // Not allowed routes for guest user.
+          case "/logout":
             My.log(`Guest user not allowed to pathname: ${pathname}`);
-            My.log("Redirecting to /login");
-            navigate("/login");
+            My.log("Redirecting to /");
+            history.push("/");
+            break;
+          default:
+            // All the rest of routes, guest user is allowed.
+            My.log(`Guest user is allowed to pathname: ${pathname}`);
             break;
         }
       }
@@ -54,7 +56,7 @@ const MyRouteGuard = ({ children }) => {
 
     handleRouteAccess();
 
-  });
+  }, [pathname, history]);
 
 
   return (

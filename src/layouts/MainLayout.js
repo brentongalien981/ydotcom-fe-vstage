@@ -5,7 +5,7 @@ import MainWebLayout from "./MainWebLayout/MainWebLayout";
 import NotificationManager from "../utils/NotificationManager";
 
 
-function MainLayout() {
+function MainLayout({ children }) {
 
   const largeWidthBreakpoint = 1200;
   const [isMobile, setIsMobile] = useState(window.innerWidth < largeWidthBreakpoint);
@@ -30,7 +30,7 @@ function MainLayout() {
 
   return (
     <>
-      {isMobile ? <MainPhoneLayout /> : <MainWebLayout />}
+      {isMobile ? <MainPhoneLayout>{children}</MainPhoneLayout> : <MainWebLayout>{children}</MainWebLayout>}
       <NotificationManager />
     </>
   );

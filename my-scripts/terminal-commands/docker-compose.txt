@@ -1,0 +1,11 @@
+      - name: Update npm
+        run: sudo npm install -g npm@10.5.1    
+
+              - name: Create Environment
+        run: |
+          echo "Creating environment file..."
+          echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> .env
+          echo "FRONTEND_URL=${{ secrets.FRONTEND_URL }}" >> .env     
+
+                    -e REACT_APP_BACKEND_URL=${{ secrets.REACT_APP_BACKEND_URL }} \
+          -e REACT_APP_NAME=${{ secrets.REACT_APP_NAME }} \

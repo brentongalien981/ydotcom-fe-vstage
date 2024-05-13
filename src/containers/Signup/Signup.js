@@ -3,14 +3,14 @@ import "./Signup.css";
 import React, { useState } from "react";
 import My from "../../utils/My";
 import AlertNotification from "../../components/AlertNotification";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { useAuth } from "../../context/AuthContext";
 import { useAlertNotifications } from "../../context/AlertNotificationsContext";
 
 
 function Signup() {
 
-  const navigate = useNavigate();
+  const history = useHistory();
   const { login } = useAuth();
   const { addAlertNotification } = useAlertNotifications();
 
@@ -70,7 +70,7 @@ function Signup() {
 
         addAlertNotification(alertNotification.heading, alertNotification.message);
 
-        navigate("/");
+        history.push("/");
 
       } else if (response.status === 400 || response.status === 401 || response.status === 403 || response.status === 422 || response.status === 500) {
 

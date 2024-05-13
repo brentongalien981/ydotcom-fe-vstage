@@ -1,5 +1,4 @@
 import { Col, Row } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 import "./PlainLayout.css";
 import HeaderPhone from "../HeaderPhone/HeaderPhone";
@@ -7,7 +6,7 @@ import { useEffect, useState } from "react";
 import My from "../../utils/My";
 
 
-const PlainLayout = () => {
+const PlainLayout = ({ children }) => {
 
   const largeWidthBreakpoint = 1200;
   const [isMobile, setIsMobile] = useState(window.innerWidth < largeWidthBreakpoint);
@@ -33,12 +32,11 @@ const PlainLayout = () => {
   return (
     <div id="the-plain-layout">
 
-      <Header />
       {isMobile ? <HeaderPhone /> : <Header />}
 
       <Row className="m-0">
         <Col id="the-main-col">
-          <Outlet />
+          {children}
         </Col>
 
       </Row>

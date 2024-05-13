@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { useAlertNotifications } from "../context/AlertNotificationsContext";
 
 
 const Logout = () => {
 
   const { isLoggedIn, logout } = useAuth();
-  const navigate = useNavigate();
+  const history = useHistory();
   const { addAlertNotification } = useAlertNotifications();
 
 
@@ -24,9 +24,9 @@ const Logout = () => {
 
       addAlertNotification(alertNotification.heading, alertNotification.message);
 
-      navigate("/");
+      history.push("/");
     }
-  }, [isLoggedIn, logout, navigate, addAlertNotification]);
+  }, [isLoggedIn, logout, history, addAlertNotification]);
 
   return (
     <div>

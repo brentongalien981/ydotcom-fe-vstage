@@ -1,6 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import Header from "../Header/Header";
 import MainNavigation from "../MainNavigation/MainNavigation";
+import { Outlet } from "react-router-dom";
 import AlertNotifications from "../AlertNotifications";
 import CreatePost from "../../components/CreatePost";
 import "./MainWebLayout.css";
@@ -21,7 +22,7 @@ function MainWebLayout({ children }) {
         </Col>
 
         <Col xs={{ span: 6, offset: 3 }} id="the-middle-col">
-          {children}
+          <Outlet />
         </Col>
 
         <Col xs={3} id="the-right-col">

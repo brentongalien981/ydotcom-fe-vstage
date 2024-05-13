@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Post from "../components/Post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { selectorError, selectorIsLoading, selectorPosts } from "../redux/selectors/readPostsSelectors";

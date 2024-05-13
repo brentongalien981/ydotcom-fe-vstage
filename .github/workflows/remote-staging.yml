@@ -32,10 +32,10 @@ jobs:
           echo "REACT_APP_NAME=${{ secrets.REACT_APP_NAME }}" >> staging.env              
 
       - name: Build Docker Image
-        run: docker build -f dockerfiles/react.dockerfile -t odox700/org-ydotcom-fe:staging-2.0 .              
+        run: docker build -f dockerfiles/react.dockerfile -t odox700/org-ydotcom-fe:staging-2.1 .              
 
       - name: Push image to docker hub
-        run: docker push odox700/org-ydotcom-fe:staging-2.0
+        run: docker push odox700/org-ydotcom-fe:staging-2.1
 
   deploy:
     needs: build
@@ -49,7 +49,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }} 
 
       - name: Pull image from docker hub
-        run: docker pull odox700/org-ydotcom-fe:staging-2.0
+        run: docker pull odox700/org-ydotcom-fe:staging-2.1
 
       - name: Delete old container
         run: docker rm -f ydotcom
@@ -57,6 +57,6 @@ jobs:
       - name: Run Docker Container
         run: |
           docker run -d \
-          -p 280:80 \
+          -p 280:3000 \
           --name ydotcom \
-          odox700/org-ydotcom-fe:staging-2.0
+          odox700/org-ydotcom-fe:staging-2.1
