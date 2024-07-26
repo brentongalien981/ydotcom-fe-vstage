@@ -1,12 +1,13 @@
-import { Image, Spinner, Tab, Tabs } from "react-bootstrap";
+import { Button, Image, Spinner, Tab, Tabs } from "react-bootstrap";
 import "./Profile.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectorIsReadingProfile, selectorProfile, selectorReadProfileError } from "../../redux/selectors/profileSelectors";
+import { selectorIsAuthFollowingTheUser, selectorIsReadingProfile, selectorProfile, selectorReadProfileError } from "../../redux/selectors/profileSelectors";
 import "animate.css";
-import { readProfile } from "../../redux/actions/profileActions";
+import { followUser, readProfile } from "../../redux/actions/profileActions";
 import Bio from "../../components/Bio/Bio";
+import { useAlertNotifications } from "../../context/AlertNotificationsContext";
 
 
 const Profile = () => {
@@ -16,12 +17,37 @@ const Profile = () => {
   const isReadingProfile = useSelector(selectorIsReadingProfile);
   const readError = useSelector(selectorReadProfileError);
   const profile = useSelector(selectorProfile);
+  const isAuthFollowingTheUser = useSelector(selectorIsAuthFollowingTheUser)
+  const { addAlertNotification } = useAlertNotifications();
 
 
   useEffect(() => {
     dispatch(readProfile(username));
 
   }, [dispatch, username]);
+
+
+  function handleFollowUser() {
+    dispatch(followUser(profile.userId, addAlertNotification))
+  }
+
+
+  // Set follow or unfollow button.
+  function getFollowOrUnfollowBtn() {
+
+    const eventHandler = isAuthFollowingTheUser ? () => { alert("LATER: This feature is pending...") } : handleFollowUser;
+    const btnText = isAuthFollowingTheUser ? "Unfollow" : "Follow";
+    const btnVariant = isAuthFollowingTheUser ? "warning" : "primary";
+
+    let btn = (
+      <div className="profile-sections">
+        <Button className={`btn btn-${btnVariant}`} onClick={eventHandler}>{btnText}</Button>
+      </div>
+    );
+
+    return btn;
+  }
+
 
 
   // Set loader component.
@@ -59,6 +85,9 @@ const Profile = () => {
 
         {/* Username */}
         <div className="profile-sections">@{profile.username}</div>
+
+        {/* Follow Button */}
+        {getFollowOrUnfollowBtn()}
 
         {/* Profile Tabs */}
         <Tabs

@@ -14,7 +14,7 @@ export const readProfile = (username) => async (dispatch) => {
     onSuccess: (data) => {
       dispatch({
         type: profileActionTypes.READ_USER_PROFILE_SUCCESS,
-        payload: data.profile
+        payload: data
       });
     },
     onFailure: (errorMessage) => {
@@ -22,6 +22,35 @@ export const readProfile = (username) => async (dispatch) => {
         type: profileActionTypes.READ_USER_PROFILE_FAILURE,
         error: errorMessage
       });
+    }
+  });
+
+};
+
+
+export const followUser = (userId, addAlertNotification) => async (dispatch) => {
+
+  // TODO:
+  dispatch({
+    type: profileActionTypes.FOLLOW_USER_REQUEST
+  });
+
+
+  await myFetch({
+    url: `/userRelationships/follow`,
+    method: "POST",
+    body: { userIdToFollow: userId },
+    onSuccess: (data) => {
+      dispatch({
+        type: profileActionTypes.FOLLOW_USER_SUCCESS
+      });
+      addAlertNotification("", "User followed successfully.", "success");
+    },
+    onFailure: (errorMessage) => {
+      dispatch({
+        type: profileActionTypes.FOLLOW_USER_FAILURE
+      });
+      addAlertNotification("", `${errorMessage}`, "danger");
     }
   });
 
