@@ -1,5 +1,5 @@
 import React from 'react'
-import { act, screen } from '@testing-library/react'
+import { act, fireEvent, screen } from '@testing-library/react'
 
 // We're using our own custom render function and not RTL's render.
 import { renderWithProviders } from '../../utils/test-utils/renderWithProviders'
@@ -194,5 +194,69 @@ it("renders the unfollow button if the authenticated user is following the queri
 
   // Assert
   expect(unfollowButton).toBeInTheDocument();
+
+});
+
+
+it("replaces the follow button with unfollow button once the authenticated user successfully follows another user", async () => {
+
+  // Mock the queried profile.
+  const mockProfile = {
+    username: "username1",
+    email: "email@abc.com",
+    hobby: "poker"
+  };
+
+  // Mock that the authenticated user is initially not following the queried user profile.
+  const isAuthFollowingTheUser = false;
+
+  // Mock the querying of a user profile.
+  jest.spyOn(global, "fetch").mockResolvedValueOnce(Promise.resolve({
+    ok: true,
+    status: 200,
+    json: async () => ({
+      msg: "success",
+      profile: mockProfile,
+      isAuthFollowingTheUser
+    })
+  }));
+
+
+  // Mock the fetch request of the authenticated user following the queried user profile.
+  jest.spyOn(global, "fetch").mockResolvedValueOnce(Promise.resolve({
+    status: 201,
+    json: async () => ({
+      msg: "success"
+    })
+  }));
+
+
+  // Render the Profile component with redux, store, and other providers.
+  act(() => {
+    renderWithProviders(
+      <AlertNotificationsProvider>
+        <BrowserRouter>
+          <Profile />
+        </BrowserRouter>
+      </AlertNotificationsProvider>
+    );
+  });
+
+
+  // On initial render of the page, reference the follow button.
+  const followButton = await screen.findByText("Follow");
+
+  // Assert
+  expect(followButton).toBeInTheDocument();
+
+  // Simulate the click event on the follow button.
+  fireEvent.click(followButton);
+
+  // Wait for the follow request to complete and then assert that the unfollow button is rendered.
+  const unfollowButton = await screen.findByText("Unfollow");
+
+  // Assert
+  expect(unfollowButton).toBeInTheDocument();
+
 
 });
