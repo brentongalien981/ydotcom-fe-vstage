@@ -15,7 +15,9 @@ class My {
 
 
   static log(msg) {
-    console.log(msg);
+    if (process.env.NODE_ENV === "development") {
+      console.log(msg);
+    }
   }
 
 

@@ -6,6 +6,7 @@ const defaultInitialState = {
   profile: {},
   isAuthFollowingTheUser: false,
   isReadingProfile: false,
+  isFollowRequesting: false,
   readError: null
 };
 
@@ -103,5 +104,86 @@ describe("redux / reducers / profileReducer", () => {
     expect(actualNewState).toEqual(expectedNewState);
 
   });
+
+
+  it("should handle FOLLOW_USER_REQUEST", () => {
+
+    // Mock stuffs.
+    const mockInitialState = { ...defaultInitialState };
+
+
+    // Action to dispatch.
+    const action = {
+      type: profileActionTypes.FOLLOW_USER_REQUEST
+    };
+
+
+    // Trigger reducer.
+    const actualNewState = profileReducer(mockInitialState, action);
+
+
+    // Expected new state.
+    const expectedNewState = {
+      ...mockInitialState,
+      isFollowRequesting: true
+    };
+
+    expect(actualNewState).toEqual(expectedNewState);
+
+  });
+
+  it("should handle FOLLOW_USER_FAILURE", () => {
+
+    // Mock stuffs.
+    const mockInitialState = { ...defaultInitialState };
+
+
+    // Action to dispatch.
+    const action = {
+      type: profileActionTypes.FOLLOW_USER_FAILURE
+    };
+
+
+    // Trigger reducer.
+    const actualNewState = profileReducer(mockInitialState, action);
+
+
+    // Expected new state.
+    const expectedNewState = {
+      ...mockInitialState,
+      isFollowRequesting: false
+    };
+
+    expect(actualNewState).toEqual(expectedNewState);
+
+  });
+
+  it("should handle FOLLOW_USER_SUCCESS", () => {
+
+    // Mock stuffs.
+    const mockInitialState = { ...defaultInitialState };
+
+
+    // Action to dispatch.
+    const action = {
+      type: profileActionTypes.FOLLOW_USER_SUCCESS
+    };
+
+
+    // Trigger reducer.
+    const actualNewState = profileReducer(mockInitialState, action);
+
+
+    // Expected new state.
+    const expectedNewState = {
+      ...mockInitialState,
+      isFollowRequesting: false,
+      isAuthFollowingTheUser: true
+    };
+
+    expect(actualNewState).toEqual(expectedNewState);
+
+  });
+
 
 });
