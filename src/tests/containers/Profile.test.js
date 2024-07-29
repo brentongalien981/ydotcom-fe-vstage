@@ -14,7 +14,7 @@ afterEach(() => {
 
 
 
-it('renders <Profile />', async () => {
+it("renders <Profile />", async () => {
 
   // Mock the queried profile.
   const mockProfile = {
@@ -57,6 +57,53 @@ it('renders <Profile />', async () => {
 
   const hobbyElement = await screen.findByText(mockProfile.hobby);
   expect(hobbyElement).toBeInTheDocument();
+
+});
+
+
+it("renders <Profile /> container correctly", async () => {
+
+  // Mock the queried profile.
+  const mockProfile = {
+    username: "username1",
+    email: "email@abc.com",
+    hobby: "poker"
+  };
+
+  // Mock that the authenticated user is not following the queried user profile.
+  jest.spyOn(global, "fetch").mockResolvedValue(Promise.resolve({
+    ok: true,
+    status: 200,
+    json: async () => ({
+      msg: "success",
+      profile: mockProfile
+    })
+  }));
+
+
+  // Render with redux and the store.
+  let container;
+  act(() => {
+    const { asFragment } = renderWithProviders(
+      <AlertNotificationsProvider>
+        <BrowserRouter>
+          <Profile />
+        </BrowserRouter>
+      </AlertNotificationsProvider>
+    );
+    container = asFragment;
+  });
+
+
+  expect(fetch).toHaveBeenCalledTimes(1);
+
+  // After the backend request, the username should be rendered.
+  const usernameElement = await screen.findByText(`@${mockProfile.username}`);
+  expect(usernameElement).toBeInTheDocument();
+
+
+  // Expect that the rendered container matches the snapshot.
+  expect(container()).toMatchSnapshot();
 
 });
 

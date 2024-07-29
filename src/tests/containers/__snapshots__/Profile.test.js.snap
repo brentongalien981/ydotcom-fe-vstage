@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders <Profile /> container correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="profile-container"
+  >
+    <h4
+      class="page-title"
+    >
+      Profile
+    </h4>
+    <div
+      class="profile-sections"
+    >
+      <img
+        class="profile-photo rounded-circle"
+        src="/photos/penguin2.jpg"
+      />
+    </div>
+    <div
+      class="profile-sections"
+    >
+      @username1
+    </div>
+    <div
+      class="profile-sections"
+    >
+      <button
+        class="btn btn-primary btn btn-primary"
+        type="button"
+      >
+        Follow
+      </button>
+    </div>
+    <ul
+      class="mb-3 profile-sections nav nav-tabs nav-fill"
+      role="tablist"
+    >
+      <li
+        class="nav-item"
+        role="presentation"
+      >
+        <button
+          aria-controls="react-aria-:r3:-tabpane-bio"
+          aria-selected="true"
+          class="nav-link active"
+          data-rr-ui-event-key="bio"
+          id="react-aria-:r3:-tab-bio"
+          role="tab"
+          type="button"
+        >
+          Bio
+        </button>
+      </li>
+      <li
+        class="nav-item"
+        role="presentation"
+      >
+        <button
+          aria-controls="react-aria-:r3:-tabpane-posts"
+          aria-selected="false"
+          class="nav-link"
+          data-rr-ui-event-key="posts"
+          id="react-aria-:r3:-tab-posts"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Posts
+        </button>
+      </li>
+      <li
+        class="nav-item"
+        role="presentation"
+      >
+        <button
+          aria-controls="react-aria-:r3:-tabpane-followers"
+          aria-selected="false"
+          class="nav-link"
+          data-rr-ui-event-key="followers"
+          id="react-aria-:r3:-tab-followers"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Followers
+        </button>
+      </li>
+      <li
+        class="nav-item"
+        role="presentation"
+      >
+        <button
+          aria-controls="react-aria-:r3:-tabpane-following"
+          aria-selected="false"
+          class="nav-link"
+          data-rr-ui-event-key="following"
+          id="react-aria-:r3:-tab-following"
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
+          Following
+        </button>
+      </li>
+    </ul>
+    <div
+      class="tab-content"
+    >
+      <div
+        aria-labelledby="react-aria-:r3:-tab-bio"
+        class="fade tab-pane active show"
+        id="react-aria-:r3:-tabpane-bio"
+        role="tabpanel"
+      >
+        <div
+          class="d-flex justify-content-center profile-bio"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  profession:
+                </td>
+                <td />
+              </tr>
+              <tr>
+                <td>
+                  email:
+                </td>
+                <td>
+                  email@abc.com
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  country:
+                </td>
+                <td />
+              </tr>
+              <tr>
+                <td>
+                  hobby:
+                </td>
+                <td>
+                  poker
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        aria-labelledby="react-aria-:r3:-tab-posts"
+        class="fade tab-pane"
+        id="react-aria-:r3:-tabpane-posts"
+        role="tabpanel"
+      >
+        Tab content for Posts
+      </div>
+      <div
+        aria-labelledby="react-aria-:r3:-tab-followers"
+        class="fade tab-pane"
+        id="react-aria-:r3:-tabpane-followers"
+        role="tabpanel"
+      >
+        Tab content for Followers
+      </div>
+      <div
+        aria-labelledby="react-aria-:r3:-tab-following"
+        class="fade tab-pane"
+        id="react-aria-:r3:-tabpane-following"
+        role="tabpanel"
+      >
+        Tab content for Following
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
