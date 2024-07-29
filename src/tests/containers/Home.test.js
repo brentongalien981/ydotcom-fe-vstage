@@ -10,8 +10,8 @@ import Home from '../../containers/Home'
 
 
 
-// Mock the entire @bbdevcomVideo/bbdevcomVideo-player-react module
-jest.mock('@bbdevcomVideo/bbdevcomVideo-player-react', () => () => <div></div>);
+// Mock the entire @mux/mux-player-react module
+jest.mock('@mux/mux-player-react', () => () => <div></div>);
 
 
 beforeEach(() => {
@@ -40,13 +40,15 @@ it('renders <Home />', async () => {
           id: "post1",
           message: "message1",
           user: { username: "username1" },
-          video: { id: "vid1", bbdevcomVideoPlaybackId: "b2umqofYtJoKqYdNGFAggk00revWA01jPnXLITiaYal02o" }
+          video: { id: "vid1", muxPlaybackId: "b2umqofYtJoKqYdNGFAggk00revWA01jPnXLITiaYal02o" },
+          userProfile: { photoSource: "fake-photo.jpg" }
         },
         {
           id: "post2",
           message: "message2",
           user: { username: "username2" },
-          video: { id: "vid2", bbdevcomVideoPlaybackId: "b2umqofYtJoKqYdNGFAggk00revWA01jPnXLITiaYal02o" }
+          video: { id: "vid2", muxPlaybackId: "b2umqofYtJoKqYdNGFAggk00revWA01jPnXLITiaYal02o" },
+          userProfile: { photoSource: "fake-photo.jpg" }
         }
       ]
     })

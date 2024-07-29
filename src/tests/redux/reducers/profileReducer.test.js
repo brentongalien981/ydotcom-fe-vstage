@@ -4,6 +4,7 @@ import profileReducer from "../../../redux/reducers/profileReducer";
 
 const defaultInitialState = {
   profile: {},
+  isAuthFollowingTheUser: false,
   isReadingProfile: false,
   readError: null
 };
@@ -42,16 +43,19 @@ describe("redux / reducers / profileReducer", () => {
 
     // Mock stuffs.
     const mockInitialState = { ...defaultInitialState };
-    const mockProfile = {
-      username: "username1",
-      email: "email@abc.com",
-      hobby: "poker"
+    const mockPayload = {
+      profile: {
+        username: "username1",
+        email: "email@abc.com",
+        hobby: "poker"
+      },
+      isAuthFollowingTheUser: false
     };
 
     // Action to dispatch.
     const action = {
       type: profileActionTypes.READ_USER_PROFILE_SUCCESS,
-      payload: mockProfile
+      payload: mockPayload
     };
 
 
@@ -62,7 +66,7 @@ describe("redux / reducers / profileReducer", () => {
     // Expected new state.
     const expectedNewState = {
       ...mockInitialState,
-      profile: mockProfile,
+      profile: mockPayload.profile,
       isReadingProfile: false
     };
 
@@ -91,13 +95,13 @@ describe("redux / reducers / profileReducer", () => {
 
     // Expected new state.
     const expectedNewState = {
-      ...mockInitialState,      
+      ...mockInitialState,
       isReadingProfile: false,
       readError: mockError
     };
 
     expect(actualNewState).toEqual(expectedNewState);
 
-  });  
+  });
 
 });

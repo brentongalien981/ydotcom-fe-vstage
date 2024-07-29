@@ -32,7 +32,7 @@ const Profile = () => {
   }
 
 
-  // Set follow or unfollow button.
+  
   function getFollowOrUnfollowBtn() {
 
     const eventHandler = isAuthFollowingTheUser ? () => { alert("LATER: This feature is pending...") } : handleFollowUser;

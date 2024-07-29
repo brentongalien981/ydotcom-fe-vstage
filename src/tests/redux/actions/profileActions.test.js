@@ -46,7 +46,7 @@ describe('redux / actions / profileActions', () => {
       // Expect    
       const expectedActions = [
         { type: profileActionTypes.READ_USER_PROFILE_REQUEST },
-        { type: profileActionTypes.READ_USER_PROFILE_SUCCESS, payload: mockResponse.profile }
+        { type: profileActionTypes.READ_USER_PROFILE_SUCCESS, payload: mockResponse }
       ];
 
       expect(fakeStore.getActions()).toEqual(expectedActions);
