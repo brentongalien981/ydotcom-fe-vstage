@@ -92,7 +92,7 @@ const Profile = () => {
         {/* Profile Tabs */}
         <Tabs
           defaultActiveKey="bio"
-          className="mb-3 profile-sections"
+          className="my-4 profile-sections"
           fill
         >
           <Tab eventKey="bio" title="Bio"><Bio /></Tab>

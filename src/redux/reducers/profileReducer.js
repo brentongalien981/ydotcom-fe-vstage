@@ -10,6 +10,7 @@ const initialState = {
 };
 
 
+
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case profileActionTypes.READ_USER_PROFILE_REQUEST: return { ...state, isReadingProfile: true, readError: null };

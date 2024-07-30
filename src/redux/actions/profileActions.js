@@ -29,8 +29,7 @@ export const readProfile = (username) => async (dispatch) => {
 
 
 export const followUser = (userId, addAlertNotification) => async (dispatch) => {
-
-  // TODO:
+  
   dispatch({
     type: profileActionTypes.FOLLOW_USER_REQUEST
   });
