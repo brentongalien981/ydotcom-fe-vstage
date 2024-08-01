@@ -5,6 +5,16 @@ exports[`renders initial <RecommendedUsers /> correctly 1`] = `
   <div
     class="user-list"
     data-testid="recommendedUsersTestId"
-  />
+  >
+    <div
+      class="d-flex justify-content-center"
+      style="padding: 20px;"
+    >
+      <div
+        class="animate__animated animate__fadeIn spinner-border text-primary"
+        data-testid="recommendedUsersSpinner"
+      />
+    </div>
+  </div>
 </DocumentFragment>
 `;

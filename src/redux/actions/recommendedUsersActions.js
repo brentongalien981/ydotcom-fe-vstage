@@ -12,7 +12,7 @@ export const readRecommendedUsers = () => async (dispatch) => {
 
   // Fetch the recommended users.
   await myFetch({
-    url: "/users/getRecommendedUsers",
+    url: "/recommendedUsers",
     onSuccess: (data) => {
       dispatch({
         type: recommendedUsersActionTypes.READ_RECOMMENDED_USERS_SUCCESS,
@@ -22,7 +22,7 @@ export const readRecommendedUsers = () => async (dispatch) => {
     onFailure: (errorMessage) => {
       dispatch({
         type: recommendedUsersActionTypes.READ_RECOMMENDED_USERS_FAILURE,
-        error: errorMessage
+        error: `Failed to read recommended users. ${errorMessage}`
       });
     }
   });

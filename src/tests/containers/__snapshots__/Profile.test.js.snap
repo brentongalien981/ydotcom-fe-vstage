@@ -34,7 +34,7 @@ exports[`renders <Profile /> container correctly 1`] = `
       </button>
     </div>
     <ul
-      class="mb-3 profile-sections nav nav-tabs nav-fill"
+      class="my-4 profile-sections nav nav-tabs nav-fill"
       role="tablist"
     >
       <li
